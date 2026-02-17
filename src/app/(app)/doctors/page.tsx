@@ -93,10 +93,12 @@ export default async function DoctorsPage() {
               </thead>
               <tbody>
                 {doctors.map((doctor) => {
+                  const clinic = doctor.clinics?.[0];
+                  const profile = doctor.profiles?.[0];
                   const formId = `update-doctor-${doctor.id}`;
                   return (
                     <tr key={doctor.id}>
-                      <td>{doctor.profiles?.full_name || "Doctor"}</td>
+                      <td>{profile?.full_name || "Doctor"}</td>
                       <td>
                         <input
                           form={formId}
@@ -105,7 +107,7 @@ export default async function DoctorsPage() {
                           className="form-control form-control-sm"
                         />
                       </td>
-                      <td>{doctor.clinics?.name || "Clinic"}</td>
+                      <td>{clinic?.name || "Clinic"}</td>
                       <td>
                         <input
                           form={formId}

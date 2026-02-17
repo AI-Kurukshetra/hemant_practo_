@@ -5,6 +5,11 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next({
     request,
   });
+  type CookieToSet = {
+    name: string;
+    value: string;
+    options?: Record<string, unknown>;
+  };
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -18,8 +23,8 @@ export async function middleware(request: NextRequest) {
       getAll() {
         return request.cookies.getAll();
       },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value, options }) => {
+      setAll(cookiesToSet: CookieToSet[]) {
+        cookiesToSet.forEach(({ name, value, options }: CookieToSet) => {
           response.cookies.set(name, value, options);
         });
       },

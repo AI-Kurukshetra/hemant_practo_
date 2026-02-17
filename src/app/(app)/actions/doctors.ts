@@ -25,13 +25,13 @@ export async function createDoctor(formData: FormData) {
   assertSupabaseOk(result);
 
   if (userId) {
-    const membershipResult = await supabase.from("clinic_users").insert(
+    const membershipResult = await supabase.from("clinic_users").upsert(
       {
         clinic_id: clinicId,
         user_id: userId,
         role: "doctor",
       },
-      { ignoreDuplicates: true }
+      { onConflict: "clinic_id,user_id" }
     );
     assertSupabaseOk(membershipResult);
   }

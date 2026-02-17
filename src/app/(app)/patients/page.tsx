@@ -70,6 +70,7 @@ export default async function PatientsPage() {
               </thead>
               <tbody>
                 {patients.map((patient) => {
+                  const clinic = patient.clinics?.[0];
                   const formId = `update-patient-${patient.id}`;
                   return (
                     <tr key={patient.id}>
@@ -97,7 +98,7 @@ export default async function PatientsPage() {
                           className="form-control form-control-sm"
                         />
                       </td>
-                      <td>{patient.clinics?.name || "Clinic"}</td>
+                      <td>{clinic?.name || "Clinic"}</td>
                       <td className="d-flex gap-2">
                         <form id={formId} action={updatePatient}>
                           <input type="hidden" name="id" value={patient.id} />

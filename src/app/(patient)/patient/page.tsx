@@ -75,7 +75,7 @@ export default async function PatientHome() {
                 {appointments.map((appointment) => (
                   <tr key={appointment.id}>
                     <td>{formatDateTime(appointment.scheduled_at)}</td>
-                    <td>{appointment.doctors?.specialization || "Doctor"}</td>
+                    <td>{appointment.doctors?.[0]?.specialization || "Doctor"}</td>
                     <td>
                       <span className="badge bg-light text-dark">
                         {appointment.status}

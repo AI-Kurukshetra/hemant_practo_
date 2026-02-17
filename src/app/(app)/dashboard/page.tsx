@@ -80,8 +80,8 @@ export default async function DashboardPage() {
               <tbody>
                 {appointments.map((appointment) => (
                   <tr key={appointment.id}>
-                    <td>{appointment.patients?.full_name || "Unknown"}</td>
-                    <td>{appointment.doctors?.specialization || "Assigned"}</td>
+                    <td>{appointment.patients?.[0]?.full_name || "Unknown"}</td>
+                    <td>{appointment.doctors?.[0]?.specialization || "Assigned"}</td>
                     <td>{formatDateTime(appointment.scheduled_at)}</td>
                     <td>
                       <span className="badge bg-light text-dark">

@@ -60,71 +60,72 @@ export default async function ClinicsPage() {
         </div>
         {memberships && memberships.length > 0 ? (
           <div className="row g-3">
-            {memberships.map((membership) => (
-              <div key={membership.clinics?.id} className="col-md-6">
-                <div className="border rounded-4 p-3 h-100">
-                  <div className="fw-semibold">{membership.clinics?.name}</div>
-                  <div className="text-muted small">
-                    {membership.clinics?.address}
-                  </div>
-                  <div className="text-muted small">
-                    {membership.clinics?.city}, {membership.clinics?.state}
-                  </div>
-                  <div className="text-muted small">
-                    {membership.clinics?.phone || "Phone not set"}
-                  </div>
-                  <span className="badge badge-soft mt-2">
-                    {membership.role}
-                  </span>
-                  <div className="d-flex gap-2 mt-3">
-                    <form action={updateClinic} className="d-flex gap-2 flex-wrap">
-                      <input type="hidden" name="id" value={membership.clinics?.id || ""} />
-                      <input
-                        name="name"
-                        defaultValue={membership.clinics?.name || ""}
-                        className="form-control form-control-sm"
-                        placeholder="Name"
-                      />
-                      <input
-                        name="city"
-                        defaultValue={membership.clinics?.city || ""}
-                        className="form-control form-control-sm"
-                        placeholder="City"
-                      />
-                      <input
-                        name="state"
-                        defaultValue={membership.clinics?.state || ""}
-                        className="form-control form-control-sm"
-                        placeholder="State"
-                      />
-                      <input
-                        name="phone"
-                        defaultValue={membership.clinics?.phone || ""}
-                        className="form-control form-control-sm"
-                        placeholder="Phone"
-                      />
-                      <SubmitButton
-                        className="btn btn-outline-primary btn-sm"
-                        type="submit"
-                        pendingText="Updating..."
-                      >
-                        Update
-                      </SubmitButton>
-                    </form>
-                    <form action={deleteClinic}>
-                      <input type="hidden" name="id" value={membership.clinics?.id || ""} />
-                      <SubmitButton
-                        className="btn btn-outline-danger btn-sm"
-                        type="submit"
-                        pendingText="Deleting..."
-                      >
-                        Delete
-                      </SubmitButton>
-                    </form>
+            {memberships.map((membership) => {
+              const clinic = membership.clinics?.[0];
+              return (
+                <div key={clinic?.id} className="col-md-6">
+                  <div className="border rounded-4 p-3 h-100">
+                    <div className="fw-semibold">{clinic?.name}</div>
+                    <div className="text-muted small">{clinic?.address}</div>
+                    <div className="text-muted small">
+                      {clinic?.city}, {clinic?.state}
+                    </div>
+                    <div className="text-muted small">
+                      {clinic?.phone || "Phone not set"}
+                    </div>
+                    <span className="badge badge-soft mt-2">
+                      {membership.role}
+                    </span>
+                    <div className="d-flex gap-2 mt-3">
+                      <form action={updateClinic} className="d-flex gap-2 flex-wrap">
+                        <input type="hidden" name="id" value={clinic?.id || ""} />
+                        <input
+                          name="name"
+                          defaultValue={clinic?.name || ""}
+                          className="form-control form-control-sm"
+                          placeholder="Name"
+                        />
+                        <input
+                          name="city"
+                          defaultValue={clinic?.city || ""}
+                          className="form-control form-control-sm"
+                          placeholder="City"
+                        />
+                        <input
+                          name="state"
+                          defaultValue={clinic?.state || ""}
+                          className="form-control form-control-sm"
+                          placeholder="State"
+                        />
+                        <input
+                          name="phone"
+                          defaultValue={clinic?.phone || ""}
+                          className="form-control form-control-sm"
+                          placeholder="Phone"
+                        />
+                        <SubmitButton
+                          className="btn btn-outline-primary btn-sm"
+                          type="submit"
+                          pendingText="Updating..."
+                        >
+                          Update
+                        </SubmitButton>
+                      </form>
+                      <form action={deleteClinic}>
+                        <input type="hidden" name="id" value={clinic?.id || ""} />
+                        <SubmitButton
+                          className="btn btn-outline-danger btn-sm"
+                          type="submit"
+                          pendingText="Deleting..."
+                        >
+                          Delete
+                        </SubmitButton>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="text-muted">No clinics assigned yet.</div>

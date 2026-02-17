@@ -23,9 +23,9 @@ export async function joinAllClinics() {
     role: "admin",
   }));
 
-  const result = await supabase.from("clinic_users").insert(payload, {
-    ignoreDuplicates: true,
-  });
+  const result = await supabase
+    .from("clinic_users")
+    .upsert(payload, { onConflict: "clinic_id,user_id" });
   assertSupabaseOk(result);
   revalidatePath("/clinics");
   revalidatePath("/doctors");

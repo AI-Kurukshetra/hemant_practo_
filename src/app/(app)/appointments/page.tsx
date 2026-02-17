@@ -52,9 +52,9 @@ export default async function AppointmentsPage() {
   const doctorLabel = (doctor: {
     id: string;
     specialization: string | null;
-    profiles?: { full_name: string | null };
+    profiles?: { full_name: string | null }[];
   }) => {
-    const name = doctor.profiles?.full_name;
+    const name = doctor.profiles?.[0]?.full_name;
     const shortId = doctor.id.slice(0, 8);
     const specialty = doctor.specialization || "General";
     return name ? `${name} (${specialty})` : `Doctor ${shortId} (${specialty})`;
@@ -138,9 +138,9 @@ export default async function AppointmentsPage() {
                   const formId = `status-${appointment.id}`;
                   return (
                     <tr key={appointment.id}>
-                      <td>{appointment.clinics?.name || "Clinic"}</td>
-                      <td>{appointment.patients?.full_name || "Patient"}</td>
-                      <td>{appointment.doctors?.specialization || "Doctor"}</td>
+                      <td>{appointment.clinics?.[0]?.name || "Clinic"}</td>
+                      <td>{appointment.patients?.[0]?.full_name || "Patient"}</td>
+                      <td>{appointment.doctors?.[0]?.specialization || "Doctor"}</td>
                       <td>{formatDateTime(appointment.scheduled_at)}</td>
                       <td>
                         <select

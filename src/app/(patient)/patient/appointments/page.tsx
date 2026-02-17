@@ -42,7 +42,7 @@ export default async function PatientAppointmentsPage() {
               {appointments.map((appointment) => (
                 <tr key={appointment.id}>
                   <td>{formatDateTime(appointment.scheduled_at)}</td>
-                  <td>{appointment.doctors?.specialization || "Doctor"}</td>
+                  <td>{appointment.doctors?.[0]?.specialization || "Doctor"}</td>
                   <td>{appointment.reason || "-"}</td>
                   <td>
                     <span className="badge bg-light text-dark">

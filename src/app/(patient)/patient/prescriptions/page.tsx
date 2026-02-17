@@ -42,7 +42,7 @@ export default async function PatientPrescriptionsPage() {
               {prescriptions.map((prescription) => (
                 <tr key={prescription.id}>
                   <td>{formatDateTime(prescription.issued_at)}</td>
-                  <td>{prescription.doctors?.specialization || "Doctor"}</td>
+                  <td>{prescription.doctors?.[0]?.specialization || "Doctor"}</td>
                   <td>{prescription.diagnosis || "-"}</td>
                   <td>{prescription.notes || "-"}</td>
                 </tr>

@@ -74,7 +74,7 @@ export default async function BillingPage() {
               <option value="">Select appointment</option>
               {appointments?.map((appointment) => (
                 <option key={appointment.id} value={appointment.id}>
-                  {appointment.patients?.full_name} - {formatDateTime(appointment.scheduled_at)}
+                  {appointment.patients?.[0]?.full_name} - {formatDateTime(appointment.scheduled_at)}
                 </option>
               ))}
             </select>
@@ -124,7 +124,7 @@ export default async function BillingPage() {
                   const formId = `invoice-${invoice.id}`;
                   return (
                     <tr key={invoice.id}>
-                      <td>{invoice.patients?.full_name || "Patient"}</td>
+                      <td>{invoice.patients?.[0]?.full_name || "Patient"}</td>
                       <td>{formatDateTime(invoice.issued_at)}</td>
                       <td>
                         <select
@@ -183,7 +183,7 @@ export default async function BillingPage() {
               <option value="">Select invoice</option>
               {invoices?.map((invoice) => (
                 <option key={invoice.id} value={invoice.id}>
-                  {invoice.patients?.full_name} - {formatCurrency(Number(invoice.total || 0))}
+                  {invoice.patients?.[0]?.full_name} - {formatCurrency(Number(invoice.total || 0))}
                 </option>
               ))}
             </select>
@@ -225,7 +225,7 @@ export default async function BillingPage() {
               <tbody>
                 {payments.map((payment) => (
                   <tr key={payment.id}>
-                    <td>{payment.invoices?.id}</td>
+                    <td>{payment.invoices?.[0]?.id}</td>
                     <td>{formatCurrency(Number(payment.amount || 0))}</td>
                     <td>{payment.method || "-"}</td>
                     <td>{formatDateTime(payment.paid_at)}</td>

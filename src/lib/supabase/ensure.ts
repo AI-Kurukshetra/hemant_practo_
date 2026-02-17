@@ -1,4 +1,15 @@
-export function assertSupabaseOk(result) {
+type SupabaseErrorDetails = {
+  message: string;
+  code?: string | null;
+  details?: string | null;
+  hint?: string | null;
+};
+
+type SupabaseResult = {
+  error?: SupabaseErrorDetails | null;
+};
+
+export function assertSupabaseOk(result: SupabaseResult) {
   const error = result?.error;
   if (error) {
     const details = {

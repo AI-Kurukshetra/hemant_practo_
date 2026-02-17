@@ -39,9 +39,9 @@ export default async function PrescriptionsPage() {
   const doctorLabel = (doctor: {
     id: string;
     specialization: string | null;
-    profiles?: { full_name: string | null };
+    profiles?: { full_name: string | null }[];
   }) => {
-    const name = doctor.profiles?.full_name;
+    const name = doctor.profiles?.[0]?.full_name;
     const shortId = doctor.id.slice(0, 8);
     const specialty = doctor.specialization || "General";
     return name ? `${name} (${specialty})` : `Doctor ${shortId} (${specialty})`;
@@ -107,8 +107,8 @@ export default async function PrescriptionsPage() {
               <tbody>
                 {prescriptions.map((prescription) => (
                   <tr key={prescription.id}>
-                    <td>{prescription.patients?.full_name || "Patient"}</td>
-                    <td>{prescription.doctors?.specialization || "Doctor"}</td>
+                    <td>{prescription.patients?.[0]?.full_name || "Patient"}</td>
+                    <td>{prescription.doctors?.[0]?.specialization || "Doctor"}</td>
                     <td>{prescription.diagnosis || "-"}</td>
                     <td>{formatDateTime(prescription.issued_at)}</td>
                     <td>
