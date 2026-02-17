@@ -1,0 +1,116 @@
+:root {
+  --brand-900: #0f2a3d;
+  --brand-700: #1f4e6b;
+  --brand-500: #2c6e8f;
+  --brand-300: #9ac2d6;
+  --mint-500: #3fc6b7;
+  --sand-100: #f6f3ef;
+  --ink-900: #1a1d21;
+  --ink-700: #3b4652;
+  --ink-500: #6b7683;
+  --shadow-soft: 0 16px 40px rgba(15, 42, 61, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top left, #f9fbfd 0%, #eef3f7 40%, #ffffff 100%);
+  color: var(--ink-900);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, #1f4e6b 0%, #3fc6b7 100%);
+  color: #fff;
+}
+
+.brand-card {
+  border: 1px solid rgba(31, 78, 107, 0.15);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  background: #fff;
+}
+
+.section-title {
+  font-family: var(--font-display), "Georgia", serif;
+  letter-spacing: -0.02em;
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--brand-700);
+}
+
+.badge-soft {
+  background: rgba(63, 198, 183, 0.15);
+  color: var(--brand-700);
+  border: 1px solid rgba(63, 198, 183, 0.3);
+}
+
+.table thead th {
+  color: var(--ink-700);
+  font-weight: 600;
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+  border-color: rgba(26, 29, 33, 0.15);
+}
+
+.btn-primary {
+  background-color: var(--brand-700);
+  border-color: var(--brand-700);
+}
+
+.btn-outline-primary {
+  color: var(--brand-700);
+  border-color: var(--brand-300);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--brand-700);
+  color: #fff;
+}
+
+.hero-shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.hero-orb {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 198, 183, 0.5), transparent 70%);
+  top: -80px;
+  right: -60px;
+}
+
+.hero-orb.secondary {
+  width: 220px;
+  height: 220px;
+  left: -70px;
+  bottom: -90px;
+  background: radial-gradient(circle, rgba(31, 78, 107, 0.4), transparent 70%);
+}
+
+.floating-card {
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(31, 78, 107, 0.15);
+  box-shadow: 0 12px 28px rgba(15, 42, 61, 0.12);
+}
+
+.icon-pill {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(63, 198, 183, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
